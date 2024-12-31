@@ -28,33 +28,38 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-/* const connectToDatabase = async () => {
+const connectToDatabase = async () => {
     try {
         await client.connect();
         const database = client.db("all-students");
         const gradeBook = database.collection("gradebook");
         
         console.log('connected to database');
-    } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
-    }
+        } catch (error) {
+            console.error("Error connecting to MongoDB:", error);
+            }
 };
+            
+connectToDatabase();
 
-connectToDatabase(); */
 
 app.get("/search", async (req, res) => {
     const { firstname, lastname, grade } =  req.query;
-    const filter = { firstname: firstname, lastname: lastname, grade: grade };
+    //const filter = { firstname: firstname, lastname: lastname, grade: grade };
     console.log(firstname, lastname, grade);
-    /* try {
+    try {
         const database = client.db("all-students");
         const gradeBook = database.collection("gradebook");
-        const result = await gradeBook.findOne(filter);
-        res.render("search", { result });
+        const result = await gradeBook.find({$or: [{firstname: firstname}, {lastname: lastname}, {grade: grade}]}).toArray();
+        console.log(result);
+        res.render("result", { result });
     } catch (error) {
-        console.error("Error searching for student:", error);
-        res.status(500).send("Error searching for student");
-    } */
+        // console.error("Error searching for student:", error);
+        const errorMessage = "Error searching for student";
+        // res.status(500).send("Error searching for student");
+        res.render("result", { errorMessage });
+    }
+    
 })     
  
 

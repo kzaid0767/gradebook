@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <% if (errorMessage) { %>
+        <p><%= errorMessage %></p>
+    <% } else { %>
+        <% if (result.length > 0) { %>
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Grade</th>
+                </tr>
+                <% for (const student of result) { %>
+                    <tr>
+                        <td><%= student.firstname %></td>
+                        <td><%= student.lastname %></td>
+                        <td><%= student.grade %></td>
+                    </tr>
+                <% } %>
+            </table>
+        <% } else { %>
+            <p>No results found.</p>
+</body>
+</html>
