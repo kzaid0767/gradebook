@@ -4,12 +4,18 @@
 
 body{
     margin: 0;
-    padding: 2rem 0 0 0;
+    padding: 2rem 0 0 2rem;
     background-color: #EB5C76;
     color: black;
     display: grid;
     place-content: center;
     font-family: "Karla", serif;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    place-content: center;
 }
 
 label{
@@ -24,6 +30,8 @@ select{
     height: 2rem;
     width: 9rem;
     margin-left: 0.5rem;
+    border-radius: 0.4rem;
+    margin-bottom: 0.5rem;
 }
 
 button{
@@ -34,3 +42,20 @@ button{
     padding: 10px 20px;
 }
 
+a{
+    text-decoration: none;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: .4rem;
+    display: inline-block;
+    margin-top: 1.3rem;
+    font-family: inherit;
+}
+
+table{
+    border-collapse: collapse;
+    font-size: 1.4rem;
+}
+th,td{
+    padding: 10px 20px;
+}

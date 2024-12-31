@@ -42,11 +42,11 @@ const connectToDatabase = async () => {
             
 connectToDatabase();
 
-
 app.get("/search", async (req, res) => {
-    const { firstname, lastname, grade } =  req.query;
+    let { firstname, lastname, grade } =  req.query;
     //const filter = { firstname: firstname, lastname: lastname, grade: grade };
-    console.log(firstname, lastname, grade);
+    firstname = firstname.trim().toLowerCase();
+    lastname = lastname.trim().toLowerCase();
     try {
         const database = client.db("all-students");
         const gradeBook = database.collection("gradebook");
@@ -56,8 +56,9 @@ app.get("/search", async (req, res) => {
     } catch (error) {
         // console.error("Error searching for student:", error);
         const errorMessage = "Error searching for student";
+        console.log(errorMessage);
         // res.status(500).send("Error searching for student");
-        res.render("result", { errorMessage });
+        res.render("result", { errorMessage:`${errorMessage}` });
     }
     
 })     

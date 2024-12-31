@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Search Results</title>
 </head>
 <body>
-    <% if (errorMessage) { %>
-        <p><%= errorMessage %></p>
-    <% } else { %>
+    <h1>Search Results</h1>
+    
+    <% if (result) { %>
         <% if (result.length > 0) { %>
             <table>
                 <tr>
@@ -18,13 +19,18 @@
                 </tr>
                 <% for (const student of result) { %>
                     <tr>
-                        <td><%= student.firstname %></td>
-                        <td><%= student.lastname %></td>
+                        <td><%= student.firstname.slice(0, 1).toUpperCase() + student.firstname.slice(1) %></td>
+                        <td><%= student.lastname.slice(0, 1).toUpperCase() + student.lastname.slice(1) %></td>
                         <td><%= student.grade %></td>
                     </tr>
                 <% } %>
             </table>
         <% } else { %>
-            <p>No results found.</p>
-</body>
+            <h3>No matching results found. Please try again.</3>
+        <% } %>
+    <% } %>
+    <div>
+        <a href="/">Go Back</a>
+    </div>
+</body
 </html>
