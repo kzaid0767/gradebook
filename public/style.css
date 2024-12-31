@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 2rem 0 0 0;
+    background-color: #EB5C76;
+    color: black;
+    display: grid;
+    place-content: center;
+    font-family: "Karla", serif;
+}
+
+label{
+    font-size: 1.35rem;
+}
+
+select{
+    font-size: 1.2rem;
+}
+
+.names{
+    height: 2rem;
+    width: 9rem;
+    margin-left: 0.5rem;
+}
+
+button{
+    border: none;
+    font-size: 1.35rem;
+    margin: 1rem 0;
+    border-radius: .4rem;
+    padding: 10px 20px;
+}
+

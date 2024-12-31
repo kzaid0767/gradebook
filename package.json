@@ -1,0 +1,30 @@
+{
+  "name": "gradebook",
+  "version": "1.0.0",
+  "description": "solo fullstack gradebook",
+  "keywords": [
+    "mondodb",
+    "express",
+    "ejs"
+  ],
+  "homepage": "https://github.com/kzaid0767/gradebook#readme",
+  "bugs": {
+    "url": "https://github.com/kzaid0767/gradebook/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kzaid0767/gradebook.git"
+  },
+  "license": "ISC",
+  "author": "Kassim Zaid",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0"
+  }
+}

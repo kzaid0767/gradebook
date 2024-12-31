@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <title>Welcome To Your Gradebook</title>
+</head>
+<body>
+    <h1>Welcome To Your Gradebook</h1>
+    <h2>Search A Student By Entering Information Below</h2>
+    <form action="/search" method="get">  
+        <label for="firstname">First Name:</label>
+        <input class="names" type="text" name="firstname" id="firstname" >
+        <label for="lastname">Last Name:</label>
+        <input class="names" type="text" name="lastname" id="lastname" >
+        <br>
+        <label for="grade">Grade:</label>
+        <select name="grade" id="grade">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="F">F</option>
+        </select>
+        <br>
+        <button>Search</button>
+    </form>
+    <section id="results">
+
+    </section>
+</body>
+</html>
