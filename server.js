@@ -28,6 +28,22 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
+app.get("/forsearching", (req, res) => {
+    res.render("forSearching");
+});
+
+app.get("/foradding", (req, res) => {
+    res.render("forAdding");
+});
+
+app.get("/forupdating", (req, res) => {
+    res.render("forUpdating");
+});
+
+app.get("/fordeleting", (req, res) => {
+    res.render("forDeleting");
+});
+
 const connectToDatabase = async () => {
     try {
         await client.connect();

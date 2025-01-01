@@ -18,6 +18,12 @@ body{
     place-content: center;
 }
 
+.actions{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
 label{
     font-size: 1.35rem;
 }
@@ -45,6 +51,7 @@ button{
 a{
     text-decoration: none;
     background-color: white;
+    text-align: center;
     padding: 10px 20px;
     border-radius: .4rem;
     display: inline-block;
