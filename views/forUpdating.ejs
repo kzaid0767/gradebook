@@ -11,10 +11,32 @@
 </head>
 <body>
     <div class="container">
-
-        <h1>Welcome To Your Gradebook</h1>
-        <h2>Find A Student To Update</h2>
-        
+        <div class="headline">
+            <a href="/">Home</a>
+            <h1>Welcome To Your Gradebook</h1>
+        </div>
+        <h2>Update A Student's Grade</h2>
+        <form action="/update" method="post">  
+            <div>
+                <label for="firstname">First Name:</label>
+                <input class="names" type="text" name="firstname" required id="firstname" >
+            </div>
+            <div>
+                <label for="lastname">Last Name:</label>
+                <input class="names" type="text" name="lastname" required id="lastname" >
+            </div>
+            <div>
+                <label for="grade">Grade:</label>
+                <select class="names" name="grade" required id="grade">
+                    <option value="" >--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="F">F</option>
+                </select>
+            </div>
+            <button>Update</button>
+        </form>
         
     </div>
 </body>

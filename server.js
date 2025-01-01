@@ -3,6 +3,7 @@ import ejs from "ejs";
 import { MongoClient, ServerApiVersion } from "mongodb";
 import path from "path";
 import { fileURLToPath } from "url";
+import { nanoid } from "nanoid";
 
 
 const app = express();
@@ -58,6 +59,7 @@ const connectToDatabase = async () => {
             
 connectToDatabase();
 
+/* Searching for a student from the database */
 app.get("/search", async (req, res) => {
     let { firstname, lastname, grade } =  req.query;
     //const filter = { firstname: firstname, lastname: lastname, grade: grade };
@@ -67,7 +69,7 @@ app.get("/search", async (req, res) => {
         const database = client.db("all-students");
         const gradeBook = database.collection("gradebook");
         const result = await gradeBook.find({$or: [{firstname: firstname}, {lastname: lastname}, {grade: grade}]}).toArray();
-        console.log(result);
+        
         res.render("result", { result });
     } catch (error) {
         // console.error("Error searching for student:", error);
@@ -77,7 +79,79 @@ app.get("/search", async (req, res) => {
         res.render("result", { errorMessage:`${errorMessage}` });
     }
     
-})     
+})
+
+/* Adding a student to the database */
+app.post("/add", async (req, res) => {
+    let { firstname, lastname, grade } = req.body;
+    firstname = firstname.trim().toLowerCase();
+    lastname = lastname.trim().toLowerCase();
+    const student = {_id: nanoid(), firstname, lastname, grade };
+    console.log(student);
+    try {
+        const database = client.db("all-students");
+        const gradeBook = database.collection("gradebook");
+        const result = await gradeBook.insertOne(student);
+        res.send(
+            `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                <script>
+                    alert('The student was added successfully!');
+                    window.location.href = '/foradding'; 
+                </script>
+                </head>
+                <body>
+                </body>
+                </html>
+            `
+        );
+    } catch (error) {
+        console.error("Error adding student:", error);
+        res.status(500).send("Error adding student");
+    }
+});
+
+/* Updating a student in the database */
+app.post("/update", async (req, res) => {
+    let { firstname, lastname, grade } = req.body;
+    firstname = firstname.trim().toLowerCase();
+    lastname = lastname.trim().toLowerCase();
+    const student = {firstname, lastname, grade };
+    
+    try {
+        const database = client.db("all-students");
+        const gradeBook = database.collection("gradebook");
+        const result = await gradeBook.findOne({$and: [{firstname: firstname}, {lastname: lastname}]});
+        if (result) {
+            const updateResult = await gradeBook.updateOne({$and: [{firstname: firstname}, {lastname: lastname}]}, {$set: student});
+            res.render('updateCorrectly');
+        } else {
+            res.render('updateIncorrectly')
+        }  
+    } catch (error) {
+        console.error("Error updating student:", error);
+        res.status(500).send("Error updating student");
+    } 
+});
+
+/* Deleting a student from the database */
+app.delete("/delete", async (req, res) => {
+    let { firstname, lastname } = req.body;
+    firstname = firstname.trim().toLowerCase();
+    lastname = lastname.trim().toLowerCase();
+    try {
+        const database = client.db("all-students");
+        const gradeBook = database.collection("gradebook");
+        const result = await gradeBook.deleteOne({$and: [{firstname: firstname}, {lastname: lastname}]});
+        console.log(result);
+        res.redirect("/fordeleting");
+    } catch (error) {
+        console.error("Error deleting student:", error);
+        res.status(500).send("Error deleting student");
+    }
+});
  
 
 app.listen(port, () => {

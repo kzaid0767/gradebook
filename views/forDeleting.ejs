@@ -11,10 +11,22 @@
 </head>
 <body>
     <div class="container">
-
-        <h1>Welcome To Your Gradebook</h1>
+        <div class="headline">
+            <a href="/">Home</a>
+            <h1>Welcome To Your Gradebook</h1>
+        </div>
         <h2>Find A Student To Delete</h2>
-        
+        <form action="/delete" method="post">  
+            <div>
+                <label for="firstname">First Name:</label>
+                <input class="names" type="text" name="firstname" required id="firstname" >
+            </div>
+            <div>
+                <label for="lastname">Last Name:</label>
+                <input class="names" type="text" name="lastname" required id="lastname" >
+            </div>
+            <button>Delete Student</button>
+        </form>
         
     </div>
 </body>
